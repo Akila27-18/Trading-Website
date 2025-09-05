@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}TRACO{% endblock %}</title>
+  <link rel="icon" type="image/ico" href="{% static 'images/favicon.ico' %}">
+
+  <!-- Open Sans Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'traco/css/styles.css' %}">
+</head>
+<body class="bg-black text-white font-['Open Sans'] font-bold text-xl">
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 w-full z-30 bg-black shadow-md">
+    <div class="flex items-center justify-between px-4 md:px-6 py-4">
+      <!-- Logo -->
+      <a href="{% url 'home' %}" class="flex items-center text-[#D4FF00] font-bold text-xl">
+        <img src="{% static 'images/logo.png' %}" alt="TRACO Logo" class="h-8">
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex gap-10 items-center text-white">
+        <a href="{% url 'home' %}" class="hover:text-[#D4FF00]">Home</a>
+        <a href="{% url 'about' %}" class="hover:text-[#D4FF00]">About Us</a>
+        <a href="{% url 'blogs' %}" class="hover:text-[#D4FF00]">Blogs</a>
+        <a href="{% url 'partner' %}" class="hover:text-[#D4FF00]">Become a Partner</a>
+        <a href="{% url 'login' %}" class="hover:text-[#D4FF00]">
+          <i class="bi bi-person-circle text-2xl"></i>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Toggle (fixed top-right, always on top) -->
+  <button id="menu-toggle" aria-controls="mobile-menu" aria-expanded="false"
+          class="md:hidden fixed top-4 right-4 z-[9999] text-white text-2xl focus:outline-none">
+    &#9776;
+  </button>
+
+  <!-- Mobile Menu (full screen) -->
+  <div id="mobile-menu"
+       class="hidden md:hidden fixed top-0 left-0 w-full h-screen bg-black overflow-y-auto z-[9998] transition-transform duration-300 ease-in-out transform -translate-y-full">
+    <div class="flex flex-col px-6 py-20 space-y-6">
+      <a href="{% url 'home' %}" class="hover:text-[#D4FF00]">Home</a>
+      <a href="{% url 'about' %}" class="hover:text-[#D4FF00]">About Us</a>
+      <a href="{% url 'blogs' %}" class="hover:text-[#D4FF00]">Blogs</a>
+      <a href="{% url 'partner' %}" class="hover:text-[#D4FF00]">Become a Partner</a>
+      <a href="{% url 'login' %}" class="hover:text-[#D4FF00]">
+        <i class="bi bi-person-circle text-2xl"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Page Content -->
+  <main class="mt-16">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white px-6 py-10 border border-white rounded-2xl mx-4 md:mx-6 my-6">
+    <div class="grid md:grid-cols-4 gap-6">
+
+      <!-- Logo & Social -->
+      <div>
+        <a href="{% url 'home' %}" class="flex items-center mb-2">
+          <img src="{% static 'images/logo.png' %}" alt="TRACO Logo" class="h-10">
+        </a>
+        <p class="text-white mb-2">Get in Touch</p>
+        <div class="flex gap-3 mt-2">
+          <a href="#" class="bg-[#D4FF00] w-8 h-8 flex items-center justify-center rounded-full text-black">F</a>
+          <a href="#" class="bg-[#D4FF00] w-8 h-8 flex items-center justify-center rounded-full text-black">X</a>
+          <a href="#" class="bg-[#D4FF00] w-8 h-8 flex items-center justify-center rounded-full text-black">I</a>
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <h4 class="font-semibold mb-2">Home</h4>
+        <ul class="space-y-2">
+          <li><a href="{% url 'home' %}" class="hover:text-[#D4FF00]">Trade Investor</a></li>
+          <li><a href="{% url 'about' %}" class="hover:text-[#D4FF00]">About Us</a></li>
+          <li><a href="{% url 'blogs' %}" class="hover:text-[#D4FF00]">Blogs</a></li>
+          <li><a href="{% url 'partner' %}" class="hover:text-[#D4FF00]">Become a Partner</a></li>
+        </ul>
+      </div>
+
+      <!-- Information -->
+      <div>
+        <h4 class="font-semibold mb-2">Information</h4>
+        <ul class="space-y-2">
+          <li>Market Explore</li>
+          <li>Ready Token</li>
+          <li>Main Option</li>
+          <li>File Checking</li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div>
+        <h4 class="font-semibold mb-2">Newsletter</h4>
+        <div class="flex flex-col sm:flex-row gap-2 mt-2">
+          <input type="email" placeholder="Enter Your Email"
+                 class="px-2 py-2 rounded-lg text-black flex-1 w-full">
+          <button class="bg-[#D4FF00] px-2 py-2 rounded-lg text-black font-semibold">Subscribe</button>
+        </div>
+        <p class="text-white text-sm mt-2">
+          NFTs are Transforming the way Commerce is Transacted.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'traco/js/main.js' %}"></script>
+
+  <!-- Mobile Menu Toggle -->
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuToggle.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.contains('hidden');
+
+      if (isHidden) {
+        mobileMenu.classList.remove('hidden');
+        setTimeout(() => mobileMenu.classList.remove('-translate-y-full'), 10);
+      } else {
+        mobileMenu.classList.add('-translate-y-full');
+        setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+      }
+
+      menuToggle.setAttribute('aria-expanded', isHidden);
+    });
+  </script>
+
+</body>
+</html>
